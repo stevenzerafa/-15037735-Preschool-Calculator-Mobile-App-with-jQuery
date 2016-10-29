@@ -1,0 +1,119 @@
+
+<!doctype html>
+<html>
+<head>
+	<title>jQuery Calculator App</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="orange-mobile-web-app-capable" content="yes" />
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+	<style> .dragimg ></style>
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.8.24/jquery-ui.min.js"></script>
+
+  	<!-- (Start) Add jQuery UI Touch Punch -->
+  	<script src="jquery.ui.touch-punch.min.js"></script>
+  	<!-- (End) Add jQuery UI Touch Punch -->
+
+</head>
+<body>
+<section data-role="page" id="mainpage">
+	<header data-role="header">
+		<h4>Fruit Addition</h4>
+	</header><!-- /header -->
+	<div id="sum">
+		<span id="randomNum1"></span> + <span id="randomNum2"></span> = <input type="text" id="userinput" value="?" style="display:inline"/>
+		
+	</div>
+	<div>
+		<img class="dragimg" src="orange.gif"/>
+		<img class="dragimg"  src="orange.gif"/>
+		<img class="dragimg"  src="orange.gif"/>
+		<img class="dragimg"  src="orange.gif"/>
+		<img class="dragimg"  src="orange.gif"/>
+		<img class="dragimg"  src="orange.gif"/>
+		<img class="dragimg"  src="orange.gif"/>
+		<img class="dragimg" src="orange.gif"/>
+	</div>
+	<div id="plate">
+		
+	</div>
+	<div data-role="controlgroup" data-type="horizontal" style="text-align:center">
+		<a class="num" data-role="button">0</a>
+		<a class="num" data-role="button">1</a>
+		<a class="num" data-role="button">2</a>
+		<a class="num" data-role="button">3</a>
+		<a class="num" data-role="button">4</a>
+		<a class="num" data-role="button">5</a>
+		<a class="num" data-role="button">6</a>
+		<a class="num" data-role="button">7</a>
+		<a class="num" data-role="button">8</a>
+		<a class="num" data-role="button">9</a>
+		
+	</div>
+	
+	
+	<footer data-role="footer" id="mainpagefooter">
+		<a href="#resultpage" id="btnConfirm">Confirm</a>
+	</footer><!-- /footer -->
+</section><!-- /mainpage -->
+
+<section data-role="page" id="resultpage">
+	<header data-role="header">
+		<h4>Result</h4>
+	</header><!-- /header -->
+	
+	<div id="result">
+		
+	</div>
+	<footer data-role="footer">
+		<button id="back" href="#mainpage">Go Back</button>
+	</footer><!-- /footer -->
+</section><!-- /resultpage -->
+
+<script>
+
+
+$(".num").click(function() {
+            var num1 = parseInt($("#randomNum1").html());
+			var num2 = parseInt($("#randomNum2").html());			
+			$("#userinput").val(($(this).text()));
+			
+			if ($("#userinput").val() == (num1+num2))
+			{
+				$("#result").html("WELL DONE");
+			}
+			else
+			{
+				$("#result").html("WRONG");
+			}
+			$("#btnConfirm").show();
+			
+			//document.getElementById("mainpagefooter").innerHTML = "<a href='#resultpage'>Confirm</a>";
+			
+        });
+		
+$("#back").click(function() {
+            $("#btnConfirm").hide();
+			$("#randomNum1").html(Math.floor((Math.random() * 4) + 1));
+			$("#randomNum2").html(Math.floor((Math.random() * 4) + 1));
+			
+			$("#userinput").val("?");
+			
+			$(location).attr('href','#mainpage');
+        });
+
+$(document).ready(function() {
+			$("#btnConfirm").hide();
+			$("#randomNum1").html(Math.floor((Math.random() * 4) + 1));
+			$("#randomNum2").html(Math.floor((Math.random() * 4) + 1));
+
+			$(".dragimg").draggable();
+});
+
+
+</script>
+</body>
+</html>
